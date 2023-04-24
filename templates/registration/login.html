@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{{% block title %}
+  login
+{% endblock title %}}
+
+{% block content %}
+  <h2>Kirish (login)</h2>
+  <form method="post">{% csrf_token %}
+    {{ form | crispy }}
+    <button class="btn btn-info" type="submit">Kirish</button>
+    <a class="btn btn-warning text-white" href="{% url 'password_reset' %}" role="button">Kalit so'zni tiklash</a>
+  </form>
+{% endblock content %}
+

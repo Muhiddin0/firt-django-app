@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if user.is_authenticated %}
+    {{user.username}}
+  {% else %}
+    postlar ro'yxati
+  {% endif %}
+
+{% endblock title %}
+
+{% block content %}
+
+{% for articl in object_list %}
+  <div class="container">
+      <div class="card-group">
+
+        <div class="card m-4">
+            
+            {% if articl.photo %}
+                <img class="card-img-top" src="{{ articl.photo.url }}" style="object-fit: cover; width:100%; height: 60vh;" alt="Card image cap">
+            {% endif %}
+    
+          <div class="card-body ">
+
+            <h5 class="card-title"><a href="{% url 'articl_details' articl.pk %}">{{ articl.title }}</a></h5>
+            <p class="card-text">{{ articl.summary }}</p>
+            <span class="text-muted">muallif {{ articl.author | title }} . {{ articl.data }}</span>
+            <br>
+            <a href="{% url 'articl_details' articl.pk %}" class="btn btn-primary mt-3">Ko'proq o'qish</a>
+            <a href="{% url 'articl_delete' articl.pk %}" class="btn btn-danger mt-3">Delete</a>
+
+          </div>
+        </div>
+
+      </div>
+  </div>
+
+  {% endfor %}
+{% endblock content %}

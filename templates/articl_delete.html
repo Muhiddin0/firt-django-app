@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  delet "{{ object.title }}"
+{% endblock title %}
+
+{% block content %}
+  <h1 class="alert alert-danger">O'chirish</h1>
+  <form method="post">{% csrf_token %}
+    <p>"{{ object.title }}" nomli postingizni o'chirmoqchimisiz ?</p>
+    {{ form|crispy}}
+    <button class="btn btn-danger" type="submit">o'chirish</button>
+  </form>
+{% endblock content %}
